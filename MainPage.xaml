@@ -10,12 +10,12 @@
     <!--Top section of the app-->
     <Grid RowDefinitions=".6*,.4*">
         <VerticalStackLayout Grid.Row="0">
-            <Label Text="Errori: 0 di 6"
+            <Label Text="{Binding GameStatus}"
                    HorizontalTextAlignment="Center"
                    FontAttributes="Bold"
                    TextColor="{StaticResource Black}"/>
 
-            <Image Source="img0"
+            <Image Source="{Binding Image}"
                    HeightRequest="250"/>
 
             <Label Text="{Binding SpotLight}"
@@ -26,7 +26,7 @@
                    FontSize="21"
                    Margin="0,50,0,0"/>
 
-            <Label Text="Hai perso!"
+            <Label Text="{Binding Message}"
                    HorizontalOptions="Center"
                    Margin="0,20,0,0"
                    FontSize="30"/>
@@ -34,6 +34,7 @@
             <Button Text="Nuova partita"
                     HorizontalOptions="Center"
                     Margin="0,10,0,0"
+                    Clicked="Button_Clicked_Reset"
                     BackgroundColor="{StaticResource PrimaryColor}"/>
         </VerticalStackLayout>
         
@@ -42,13 +43,15 @@
                     Margin="0,15,0,0"
                     Wrap="Wrap"
                     JustifyContent="SpaceEvenly"
-                    BindableLayout.ItemsSource="{Binding Letters}">
+                    BindableLayout.ItemsSource="{Binding Letters}"
+                    x:Name="BtnContainers">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
                     <Button Text="{Binding .}"
                         HeightRequest="50"
                         HorizontalOptions="Center"
-                        BackgroundColor="{StaticResource PrimaryColor}"/>
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        Clicked="Button_ClickedLetter"/>
                 </DataTemplate>
                 
             </BindableLayout.ItemTemplate>
